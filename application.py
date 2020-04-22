@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash
-
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 
 
 from forms import *
@@ -13,6 +13,13 @@ app.config['SQLALCHEMY_DATABASE_URI']="postgresql:///samarpan"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db=SQLAlchemy(app)
+
+login=LoginManager(app)
+login.init_app(app)
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -39,9 +46,22 @@ def login():
     new_login_form=LoginForm()
     if new_login_form.validate_on_submit():
         user_object = User.query.filter_by(username=new_login_form.username.data).first()
-        return "Successfully logged in!"
-        #login_user(user_object)
-        #return redirect(url_for('chat'))
-
+        #return "Successfully logged in!"
+        login_user(user_object)
+        return redirect(url_for('chat'))
+        
 
     return render_template("login_page.html", form=new_login_form)
+
+@app.route("/chat", methods=['GET', 'POST'])
+def chat():
+    if not current_user.is_authenticated:
+        return "Please login before accessing chat!"
+
+    return "Chat with me!"
+
+@app.route("/logout", methods=['GET'])
+def logout():
+    logout_user()
+    flash('You have succesfully logged out!', 'success')
+    return redirect(url_for('login'))
