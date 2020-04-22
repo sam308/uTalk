@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>You Chat here</title>
+    </head>
+
+    <body>
+        <nav>
+
+        </nav>
+
+        <div id="main-section">
+            <nav id="sidebar">
+                <h3>ROOMS</h3>
+
+                {% for room in rooms %}
+                    <p class="select-room">{{ room|title }}</p>
+                {% endfor %}
+            </nav>
+
+            <div id="right-pannel">
+                <div id="message-section">
+
+                </div>
+                <div id="input-area">
+                    <input type="text" id="user-message" placeholder="Type your message here...">
+                    <button type="button" id="send-message">SEND</button>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">const username = `{{ username }}`</script>
+        <script src={{ url_for('static', filename='scripts/chatpage.js') }}></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
+    </body>
+</html>
