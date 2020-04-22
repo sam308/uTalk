@@ -56,7 +56,8 @@ def login():
 @app.route("/chat", methods=['GET', 'POST'])
 def chat():
     if not current_user.is_authenticated:
-        return "Please login before accessing chat!"
+        flash('Please login.', 'danger')
+        return redirect(url_for('login'))
 
     return "Chat with me!"
 
