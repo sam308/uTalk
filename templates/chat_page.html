@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>You Chat here</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/chat_style.css') }}">
     </head>
 
     <body>
-        <nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p class="formError">{{ messages[0] }}</p>
+            {% endif %}
+        {% endwith %}
 
-        </nav>
+        <div class="wrapper-chat">
+            <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #e4e725">
+                <div class="container-fluid">
+                    <div id="show-sidebar-button" class="cursor-pointer">
+                        <i class="fas fa-plus-circle "></i>
+                        <span>Rooms</span>
+                    </div>
 
-        <div id="main-section">
-            <nav id="sidebar">
-                <h3>ROOMS</h3>
-
-                {% for room in rooms %}
-                    <p class="select-room">{{ room|title }}</p>
-                {% endfor %}
-            </nav>
-
-            <div id="right-pannel">
-                <div id="message-section">
-
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a id="logout-btn" class="nav-link" href="{{ url_for('logout') }}"><span style="color: #030842">Logout</span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="input-area">
-                    <input type="text" id="user-message" placeholder="Type your message here...">
-                    <button type="button" id="send-message">SEND</button>
+            </nav>
+    
+            <div id="main-section">
+                <nav id="sidebar">
+                    <h3>ROOMS</h3>
+    
+                    {% for room in rooms %}
+                        <p class="select-room" id="#cp1">{{ room|title }}</p>
+                    {% endfor %}
+                </nav>
+    
+                <div id="right-pannel">
+                    <div id="message-section">
+    
+                    </div>
+                    <div id="input-area">
+                        <input type="text" id="user-message" class="form-control" placeholder="Type your message here..." aria-label="Type a message" aria-describedby="basic-addon2" autocomplete="off">
+                        <button type="button" id="send-message" class="btn btn-warning">SEND <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <script type="text/javascript">const username = `{{ username }}`</script>
         <script src={{ url_for('static', filename='scripts/chatpage.js') }}></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>

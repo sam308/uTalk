@@ -1,4 +1,5 @@
 html,body{
+    overflow: hidden;
     height: 100%;
 }
 
@@ -56,8 +57,7 @@ input[type=password]:focus{
 }
 
 #button-to-login{
-    margin-left: 920px;
-    text-align: center;
+    margin-left: 50%;
 }
 #already-registered{
     text-align: center;
@@ -72,7 +72,7 @@ input[type=password]:focus{
 }
 
 #copyright{
-    margin-left: 1600px;
+    margin-left: 85%;
     position: absolute;
     font-size: 20px;
     color: #f7f6f2;
