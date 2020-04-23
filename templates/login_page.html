@@ -1,29 +1,74 @@
 {% from 'form_help.html' import displayField %}
-{% extends "layout_first.html" %}
 
-{% block title %}
-    Login
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login - uTALK</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login_style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-{% block content %}
-    <h2>Login now and start chatting!</h2>
-    <p>Enter your username and password to start TalkHere</p>
+    <body>
+        <div class="index-container">
+            <div class="main-section">
+                <div class="jumbo">
+                    <h1 class="display-4">uTALK!</h1>
+                    <p class="lead">The perfect chatting application for you..</p>
+                </div>
+    
+                <div class="right-side-here">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <div class="alert alert-{{ messages[0][0] }} " role="alert">
+                                {{ messages[0][1] }}
+                            </div>
+                            <hr>
+                        {% endif %}
+                    {% endwith %}
+    
+                    <h2>Login now and start chatting!</h2>
+                    <br>
+                    <br>
+                    <p id="enter-username">Enter your username and password to start uTALK:</p>
+                
+                    <form action="{{ url_for('login') }}" method="POST">
+                         
+                        {{ displayField(form.username, 'Username', autofocus=true) }}
+                        {{ displayField(form.password, 'Password') }}
+                       
+                        <div class="form-group">
+                            <input type="submit" value="Login" id="button-to-login" class="btn btn-warning">
+                        </div>
+                
+                        {{ form.csrf_token }}    
+                    </form>
+                
+                    <hr>
+                    <br>
+                    <br>
+                    <p id="already-registered">Have not yet registered? <a id="login-now" href={{url_for('index')}}>Register now</a>.</p>
+                </div>
+    
+            </div>
 
-    <form action="{{ url_for('login') }}" method="POST">
-         
-        {{ displayField(form.username, 'Username', autofocus=true) }}
-        {{ displayField(form.password, 'Password') }}
-       
-        <div class="form-group">
-            <input type="submit" value="Login" class="btn btn-warning">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p id="copyright"><i class="fa fa-copyright" aria-hidden="true">Samarpan Chakravarty,2020</i></p>
         </div>
-
-        {{ form.csrf_token }}    
-    </form>
-
-    <hr>
-
-    <p>Have not yet registered? <a href={{ url_for('index') }}>Register here</a>.</p>
-{% endblock %}
+        
+        
+    </body>
+</html>
 
 
