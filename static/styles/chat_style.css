@@ -2,8 +2,19 @@
     display: flex;
 }
 
-#cp1 {
+.cp1 {
     cursor: pointer;
+}
+
+.select-room {
+    font-style: italic;
+    font-size: 18px;
+    color: #3e71d6;
+}
+
+h3 {
+    font-weight: bold;
+    color: #0b62e3;
 }
 
 #main-section {
@@ -19,6 +30,7 @@
     padding-top: 3em;
     padding-right:1em;
     border-right: 0.5px solid #898c91;
+    background-image: linear-gradient(to bottom,#bdfcf7, #22bdb0);;
 }
 
 #sidebar p {
@@ -27,7 +39,7 @@
 }
 
 #sidebar p:hover {
-    background-color: #ffc107;
+    background-color: #0d1f42;
 }
 
 #sidebar h3 {
@@ -63,3 +75,96 @@
 #right-pannel {
     overflow: hidden; 
 }
+
+#message-section {
+    margin-top: 5em;
+    min-height: 82vh;
+    max-height: 82vh;
+    overflow-y: auto; 
+}
+
+#input-area {
+    padding-left: 1em;
+    padding-right: 1em;
+    bottom: 0;
+}
+
+input[type=text]:focus{
+    border-color: #ffc107;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 10px #ffc107;
+}
+
+#input-area {
+    border-color: #ffc107;
+    border-width: 5px;
+}
+
+#logo-span {
+    font-size: 30px;
+}
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  
+  .others-msg {
+      margin-right:7em;
+      margin-left: 1em;
+      padding: 0.5em 0.5em 0.5em 1em;
+      border-radius: 5px;
+      border-color: grey;
+      border-width: 0.5px;
+      border-style: solid;
+      background-color: #4f1f11;
+      color: #f5ab95;
+      overflow: auto;
+      /* animation */
+      animation-name: fadeIn;
+      animation-duration: 0.75s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in-out;
+  }
+  
+  .my-msg {
+      margin-left:7em;
+      margin-right:1em;
+      padding: 0.5em 0.5em 0.5em 1em;
+      border-radius: 5px;
+      background-color: #032915;
+      color:#bef5ae;
+      border-color: #206ED2;
+      border-width: 1px;
+      border-style: solid;
+      overflow: auto;
+      /* animation */
+      animation-name: fadeIn;
+      animation-duration: 0.75s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in-out;
+  }
+  
+  .system-msg {
+      margin-left: 40%;
+      padding: 0.5em 0.5em 0.5em 1em;
+      color: #656d78;
+      font-size:0.9em;
+  }
+  
+  .timestamp {
+      color: #faf8e3;
+      font-size:0.7em;
+  }
+  
+  .other-username {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #daa8ed;
+  }
+  
+  .my-username {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #f2e74e;
+  }

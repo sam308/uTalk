@@ -5,6 +5,7 @@
         <title>You Chat here</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/chat_style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -15,20 +16,21 @@
         {% endwith %}
 
         <div class="wrapper-chat">
-            <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #e4e725">
+            <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #021738">
                 <div class="container-fluid">
+                    <span id="logo-span" style="color: #b3ed74"><i class="fa fa-commenting-o" aria-hidden="true"></i>uTALK!</span>
+
                     <div id="show-sidebar-button" class="cursor-pointer">
                         <i class="fas fa-plus-circle "></i>
                         <span>Rooms</span>
                     </div>
-
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a id="logout-btn" class="nav-link" href="{{ url_for('logout') }}"><span style="color: #030842">Logout</span></a>
+                                <a id="logout-btn" class="nav-link" href="{{ url_for('logout') }}"><span style="color: #c5d5ed">Logout</span></a>
                             </li>
                         </ul>
                     </div>
@@ -40,7 +42,7 @@
                     <h3>ROOMS</h3>
     
                     {% for room in rooms %}
-                        <p class="select-room" id="#cp1">{{ room|title }}</p>
+                        <p class="select-room cp1" id="{{ room|title}}">{{ room|title }}</p>
                     {% endfor %}
                 </nav>
     
@@ -50,7 +52,7 @@
                     </div>
                     <div id="input-area">
                         <input type="text" id="user-message" class="form-control" placeholder="Type your message here..." aria-label="Type a message" aria-describedby="basic-addon2" autocomplete="off">
-                        <button type="button" id="send-message" class="btn btn-warning">SEND <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                        <button type="button" id="send-message" class="btn btn-warning"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button> 
                     </div>
                 </div>
             </div>
