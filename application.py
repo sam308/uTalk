@@ -1,3 +1,5 @@
+import os
+
 from time import localtime, strftime
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
@@ -8,10 +10,11 @@ from models import *
 
 app=Flask(__name__)
 
-app.secret_key = 'replace'
+app.secret_key = os.environ.get('SECRET')
 
-app.config['SQLALCHEMY_DATABASE_URI']="postgresql:///samarpan"
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 db=SQLAlchemy(app)
 
@@ -88,3 +91,7 @@ def join(data):
 def leave(data):
     leave_room(data['room'])
     send({'msg': data['username'] + " has left the " + data['room'] + " room."}, room=data['room'])
+
+
+if __name__ == "__main__":
+    app.run()
